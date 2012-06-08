@@ -1,3 +1,4 @@
+call pathogen#infect() 
 set nocompatible
 "source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
@@ -23,12 +24,12 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
+filetype plugin on
+filetype indent on
 "keymaps
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
 map <F12> :tabe %:h<CR>
-
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
-
+let g:closetag_html_style=1 
