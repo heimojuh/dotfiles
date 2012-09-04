@@ -33,3 +33,4 @@ map <F12> :tabe %:h<CR>
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 let g:closetag_html_style=1 
+au BufEnter,BufNew *.txt set spell spelllang=en_gb,fi_fi
