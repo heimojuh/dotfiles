@@ -1,0 +1,26 @@
+
+function _git_prompt() {
+local git_status="`git status -unormal 2>&1`"
+if ! [[ "$git_status" =~ not\ a\ git\ repo ]]; then
+    if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+        local ansi=42
+    elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+        local ansi=43
+    else
+        local ansi=45
+    fi
+    if [[ "$git_status" =~ on\ branch\ ([^[:space:]]+) ]]; then
+        branch=${bash_rematch[1]}
+        test "$branch" != master || branch=' '
+    else
+        # detached head.  (branch=head is a faster alternative.)
+        branch="(`git describe --all --contains --abbrev=4 head 2> /dev/null ||
+            echo head`)"
+    fi
+    echo -n '\[\e[0;37;'"$ansi"';1m\]'"$branch"'\[\e[0m\] '
+fi
+                                                                                                                                                                                    }
+                                                                                                                                                                                    function _prompt_command() {
+                                                                                                                                                                                    ps1="`_git_prompt`"'\[\e[1;34m\]\w \$\[\e[0m\] '
+                                                                                                                                                                                }
+                                                                                                                                                                                prompt_command=_prompt_command
