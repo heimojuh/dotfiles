@@ -11,7 +11,9 @@ let java_highlight_functions="style"
 let java_allow_cpp_keywords=1
 let java_space_errors = 1
 set number
-colo ir_black
+set t_Co=256
+"colo ir_black
+colo cthulhian
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 "let g:miniBufExplMapWindowNavVim = 1
 "let g:miniBufExplMapWindowNavArrows = 1
@@ -30,7 +32,11 @@ filetype indent on
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
 map <F12> :tabe %:h<CR>
+nmap <F2> :TagbarToggle<CR>
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 let g:closetag_html_style=1 
 au BufEnter,BufNew *.txt set spell spelllang=en_gb,fi_fi
+let g:syntastic_javascript_checker = 'jshint'
+set wildmode=longest:full
+set wildmenu
