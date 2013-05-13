@@ -16,6 +16,9 @@ let java_space_errors = 1
 set number
 set t_Co=256
 "colo ir_black
+let g:solarized_termcolors=256
+set background=dark
+"colorscheme solarized
 colo cthulhian
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 "let g:miniBufExplMapWindowNavVim = 1
@@ -76,4 +79,8 @@ nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>]
 
 noremap % v%
+
 autocmd vimenter * NERDTree
+nmap <F5> :FufFile <CR>
+map <F2> :NERDTreeToggle<CR>
+map <F9> :SlimuxShellLast<CR>
