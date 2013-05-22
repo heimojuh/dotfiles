@@ -1,0 +1,182 @@
+# Prototype
+snippet proto
+	${1:class_name}.prototype.${2:method_name} =
+	function(${3:first_argument}) {
+		${4:// body...}
+	};
+# Function
+snippet fun
+	function ${1:function_name} (${2:argument}) {
+		${3:// body...}
+	}
+# Anonymous Function
+snippet f
+	function(${1}) {${2}};
+# if
+snippet if
+	if (${1:true}) {${2}}
+# if ... else
+snippet ife
+	if (${1:true}) {${2}}
+	else{${3}}
+# tertiary conditional
+snippet t
+	${1:/* condition */} ? ${2:a} : ${3:b}
+# switch
+snippet switch
+	switch(${1:expression}) {
+		case '${3:case}':
+			${4:// code}
+			break;
+		${5}
+		default:
+			${2:// code}
+	}
+# case
+snippet case
+	case '${1:case}':
+		${2:// code}
+		break;
+	${3}
+# for (...) {...}
+snippet for
+	for (var ${2:i} = 0; $2 < ${1:Things}.length; $2${3:++}) {
+		${4:$1[$2]}
+	};
+# for (...) {...} (Improved Native For-Loop)
+snippet forr
+	for (var ${2:i} = ${1:Things}.length - 1; $2 >= 0; $2${3:--}) {
+		${4:$1[$2]}
+	};
+# while (...) {...}
+snippet wh
+	while (${1:/* condition */}) {
+		${2:/* code */}
+	}
+# do...while
+snippet do
+	do {
+		${2:/* code */}
+	} while (${1:/* condition */});
+# Object Method
+snippet :f
+	${1:method_name}: function(${2:attribute}) {
+		${4}
+	}${3:,}
+# setTimeout function
+snippet timeout
+	setTimeout(function() {${3}}${2}, ${1:10};
+# Get Elements
+snippet get
+	getElementsBy${1:TagName}('${2}')${3}
+# Get Element
+snippet gett
+	getElementBy${1:Id}('${2}')${3}
+
+snippet ccla
+	/**
+	* ${1}
+	*
+	* @class ${2}
+	**/
+
+snippet cmet
+	/**
+	* ${1}
+	*
+	* @method ${2}
+	**/
+
+snippet cpro
+	/**
+	* ${1}
+	*
+	* @property ${2}
+	**/
+
+snippet ceve
+	/**
+	* ${1}
+	*
+	* @event ${2}
+	**/
+
+snippet cmod
+	/**
+	* ${1:module}
+	*
+	* @module $1
+	**/
+
+snippet $
+	$($1).
+
+snippet it
+	it("$1", function($2) {
+		
+	});
+
+snippet test
+	define(function(require) {
+		
+		var foo = require("");
+
+		describe(function($1) {
+			
+			it("test", function() {
+				
+			});
+		});	
+	});
+
+snippet define
+	define(function(require) {
+
+		return Something;	
+	});
+
+snippet module
+	(function (root, factory) {
+		 if (typeof exports === 'object') {
+		 // Node. Does not work with strict CommonJS, but
+		 // only CommonJS-like enviroments that support module.exports,
+		 // like Node.
+		 module.exports = factory(require('${1:nodeDependency}'));
+		 } else if (typeof define === 'function' && define.amd) {
+		 // AMD. Register as an anonymous module.
+		 define(['${2:amdDependency}'], factory);
+		 }
+		 }(this, function (${2}) {
+			 return {};
+			 }));
+
+snippet view
+	(function (root, factory) {
+		 if (typeof exports === 'object') { // Node. Does not work with strict CommonJS, but
+		 // only CommonJS-like enviroments that support module.exports,
+		 // like Node.
+		 module.exports = factory(require(
+		 'Valu'
+		 ));
+		 } else if (typeof define === 'function' && define.amd) {
+			 // AMD. Register as an anonymous module.
+			 define([
+			 'Valu'
+			 ], factory);
+		 }
+	}(this, function (Valu) {
+
+		var {$1} = Valu.View.extend({
+			
+			constructor: function(options) {
+				Valu.View.prototype.constructor.apply(this, arguments);
+			},
+
+			template: function() {
+			
+			}
+		
+		});
+
+		return {$1};
+	}));
