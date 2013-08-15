@@ -138,12 +138,8 @@ snippet define
 snippet module
 	(function (root, factory) {
 		 if (typeof exports === 'object') {
-		 // Node. Does not work with strict CommonJS, but
-		 // only CommonJS-like enviroments that support module.exports,
-		 // like Node.
 		 module.exports = factory(require('${1:nodeDependency}'));
 		 } else if (typeof define === 'function' && define.amd) {
-		 // AMD. Register as an anonymous module.
 		 define(['${2:amdDependency}'], factory);
 		 }
 		 }(this, function (${2}) {
@@ -166,7 +162,7 @@ snippet view
 		 }
 	}(this, function (Valu) {
 
-		var {$1} = Valu.View.extend({
+		var ${1} = Valu.View.extend({
 			
 			constructor: function(options) {
 				Valu.View.prototype.constructor.apply(this, arguments);
@@ -174,9 +170,83 @@ snippet view
 
 			template: function() {
 			
-			}
+		
+		}
 		
 		});
 
-		return {$1};
+		return ${1};
 	}));
+
+snippet model
+	(function (root, factory) {
+		 if (typeof exports === 'object') { // Node. Does not work with strict CommonJS, but
+		 // only CommonJS-like enviroments that support module.exports,
+		 // like Node.
+		 module.exports = factory(require(
+		 'Valu'
+		 ));
+		 } else if (typeof define === 'function' && define.amd) {
+			 // AMD. Register as an anonymous module.
+			 define([
+			 'Valu'
+	 		 ], factory);
+	 	 }
+	}(this, function (Valu) {
+
+		var ${1} = Valu.Model.extend({
+			
+			url:    "",
+			sync:   "",
+			specs: [],
+			getSaveable: function() {}
+		});
+
+		return ${1};
+	}));
+
+snippet collection
+	(function (root, factory) {
+		 if (typeof exports === 'object') { // Node. Does not work with strict CommonJS, but
+		 // only CommonJS-like enviroments that support module.exports,
+		 // like Node.
+		 module.exports = factory(require(
+		 'Valu'
+		 ));
+		 } else if (typeof define === 'function' && define.amd) {
+			 // AMD. Register as an anonymous module.
+			 define([
+			 'Valu'
+			 ], factory);
+		 }
+	}(this, function (Valu) {
+
+		var ${1} = Valu.Collection.extend({
+			
+			url:        "",
+			sync:       "",
+			findMethod: "",
+			model:      "",
+			specs: [],
+
+			constructor: function(models, options) {
+				Valu.Collection.prototype.constructor.apply(this, arguments);
+
+				options = options || {};
+			},
+
+			comparator: function(a, b) {
+			},
+			
+			parse: function(response) {
+			},
+	
+			fetch: function(options) {
+
+			Valu.Collection.prototype.fetch.apply(this, arguments);
+			}
+			});
+
+			return ${1};
+		}));
+	
