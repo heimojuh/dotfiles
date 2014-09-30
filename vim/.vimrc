@@ -1,39 +1,54 @@
-call pathogen#infect() 
+set sessionoptions-=options
 set nocompatible
-"source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
-behave mswin
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'https://github.com/rking/ag.vim.git'
+Plugin 'neocomplcache'
+Plugin 'rainbow_parentheses.vim'
+Plugin 'Solarized'
+Plugin 'closetag.vim'
+Plugin 'CSApprox'
+Plugin 'jsbeautify'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'paredit.vim'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'epeli/slimux'
+Plugin 'snipMate'
+Plugin 'SuperTab'
+Plugin 'Tagbar'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'Vimchant'
+Plugin 'tpope/vim-classpath'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'FuzzyFinder'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'javascript.vim'
+Plugin 'L9'
+
+
+call vundle#end()  
+filetype plugin indent on
+syntax on
 set backup
 set backupdir=/tmp
 set dir=/tmp
 set sm
 set ai
-syntax on
-let java_highlight_all=1
-let java_highlight_functions="style"
-let java_allow_cpp_keywords=1
-let java_space_errors = 1
-set number
-set t_Co=256
-"colo ir_black
-let g:solarized_termcolors=256
-set background=dark
-"colorscheme solarized
-colo cthulhian
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-"let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplMapWindowNavArrows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-"let g:miniBufExplModSelTarget = 1
-"au BufRead,BufNewFile * TlistToggle
-let g:SuperTabDefaultCompletionType = "context"
-"set shellpipe=\|\ tee
-set smartindent
+let mapleader=","
 set tabstop=4
 set shiftwidth=4
 set expandtab
-filetype plugin on
-filetype indent on
+set number
+set t_Co=256
+let g:solarized_termcolors=256
+set background=light
+colo cthulhian
+let g:SuperTabDefaultCompletionType = "context"
+let g:clojure_maxlines = 200
 "keymaps
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
@@ -41,9 +56,9 @@ map <F12> :tabe %:h<CR>
 nmap <F2> :TagbarToggle<CR>
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
+let g:syntastic_javascript_checkers = ['jshint']
 let g:closetag_html_style=1 
 au BufEnter,BufNew *.txt set spell spelllang=en_gb,fi_fi
-let g:syntastic_javascript_checker = 'jshint'
 set wildmode=longest:full
 set wildmenu
 au VimEnter * RainbowParenthesesToggle
@@ -55,15 +70,12 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
- inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" " <C-h>, <BS>: close popup and delete backword char.
- inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
- inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
- inoremap <expr><C-y>  neocomplcache#close_popup()
- inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-
-
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+: " <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " Enable omni completion. Not required if they are already set elsewhere in .vimrc
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -80,7 +92,28 @@ nmap <silent> <c-l> :wincmd l<CR>]
 
 noremap % v%
 
-autocmd vimenter * NERDTree
+map <Leader>s :SlimuxREPLSendLine<CR>
+vmap <Leader>s :SlimuxREPLSendSelection<CR>
+map <Leader>a :SlimuxShellLast<CR>
+map <Leader>k :SlimuxSendKeysLast<CR>
+
+"autocmd vimenter * NERDTree
 nmap <F5> :FufFile <CR>
 map <F2> :NERDTreeToggle<CR>
 map <F9> :SlimuxShellLast<CR>
+
+"super tab
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabDefaultCompletionType = "context"
+
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+        " Nothing was closed, open syntastic error
+        " location panel
+        Errors
+    endif
+endfunction
+
+nmap <silent> <leader>l :call ToggleErrors()<CR>
