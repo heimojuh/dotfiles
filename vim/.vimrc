@@ -26,8 +26,9 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-fireplace'
 Plugin 'FuzzyFinder'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'javascript.vim'
+Plugin 'pangloss/vim-javascript'
 Plugin 'L9'
+Plugin 'Markdown-syntax'
 
 
 call vundle#end()  
@@ -56,7 +57,7 @@ map <F12> :tabe %:h<CR>
 nmap <F2> :TagbarToggle<CR>
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['jshint', 'jsxhint']
 let g:closetag_html_style=1 
 au BufEnter,BufNew *.txt set spell spelllang=en_gb,fi_fi
 set wildmode=longest:full
