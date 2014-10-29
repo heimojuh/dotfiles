@@ -16,7 +16,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'paredit.vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'epeli/slimux'
-Plugin 'snipMate'
+Plugin 'msanders/snipmate.vim'
 Plugin 'SuperTab'
 Plugin 'Tagbar'
 Plugin 'chase/vim-ansible-yaml'
@@ -29,6 +29,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'L9'
 Plugin 'Markdown-syntax'
+Plugin 'delimitMate.vim'
+Plugin 'surround.vim'
 
 
 call vundle#end()  
@@ -49,15 +51,23 @@ let g:solarized_termcolors=256
 set background=light
 colo cthulhian
 let g:SuperTabDefaultCompletionType = "context"
+
+"clojure
+let g:clojure_fuzzy_indent = 1
 let g:clojure_maxlines = 200
+
+
 "keymaps
+
+
+
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
 map <F12> :tabe %:h<CR>
 nmap <F2> :TagbarToggle<CR>
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_javascript_checkers = ['jshint', 'jsxhint']
+let g:syntastic_javascript_checkers = ['jsxhint', 'jshint']
 let g:closetag_html_style=1 
 au BufEnter,BufNew *.txt set spell spelllang=en_gb,fi_fi
 set wildmode=longest:full
