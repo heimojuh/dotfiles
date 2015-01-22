@@ -6,18 +6,16 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'https://github.com/rking/ag.vim.git'
 Plugin 'neocomplcache'
-Plugin 'rainbow_parentheses.vim'
 Plugin 'Solarized'
 Plugin 'closetag.vim'
 Plugin 'CSApprox'
-Plugin 'jsbeautify'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'paredit.vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'epeli/slimux'
-Plugin 'snipMate'
-Plugin 'SuperTab'
+Plugin 'vim-addon-mw-utils'
+Plugin 'garbas/vim-snipmate'
 Plugin 'Tagbar'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'Vimchant'
@@ -26,10 +24,19 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-fireplace'
 Plugin 'FuzzyFinder'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'pangloss/vim-javascript'
 Plugin 'L9'
 Plugin 'Markdown-syntax'
-
+Plugin 'jsbeautify'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'delimitMate.vim'
+Plugin 'SuperTab'
+Plugin 'guicolorscheme.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'yegappan/greplace'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()  
 filetype plugin indent on
@@ -46,8 +53,9 @@ set expandtab
 set number
 set t_Co=256
 let g:solarized_termcolors=256
-set background=light
-colo cthulhian
+set background=dark
+"colo cthulhian
+colo gruvbox
 let g:SuperTabDefaultCompletionType = "context"
 let g:clojure_maxlines = 200
 "keymaps
@@ -62,10 +70,12 @@ let g:closetag_html_style=1
 au BufEnter,BufNew *.txt set spell spelllang=en_gb,fi_fi
 set wildmode=longest:full
 set wildmenu
+
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
 
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
@@ -118,3 +128,8 @@ function! ToggleErrors()
 endfunction
 
 nmap <silent> <leader>l :call ToggleErrors()<CR>
+
+"rainbow pars
+
+"markdown
+let g:vim_markdown_folding_disabled=1
