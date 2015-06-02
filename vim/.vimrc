@@ -10,13 +10,12 @@ Plugin 'rainbow_parentheses.vim'
 Plugin 'Solarized'
 Plugin 'closetag.vim'
 Plugin 'CSApprox'
-Plugin 'jsbeautify'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'paredit.vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'epeli/slimux'
-Plugin 'msanders/snipmate.vim'
+Plugin 'vim-addon-mw-utils'
 Plugin 'SuperTab'
 Plugin 'Tagbar'
 Plugin 'chase/vim-ansible-yaml'
@@ -28,10 +27,20 @@ Plugin 'FuzzyFinder'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'L9'
+Plugin 'jsbeautify'
 Plugin 'Markdown-syntax'
 Plugin 'delimitMate.vim'
 Plugin 'surround.vim'
+Plugin 'guicolorscheme.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'mxw/vim-jsx'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'ragtag.vim'
+Plugin 'terryma/vim-expand-region'
 
+:set tw=79
+:set formatoptions+=t
 
 call vundle#end()  
 filetype plugin indent on
@@ -48,8 +57,9 @@ set expandtab
 set number
 set t_Co=256
 let g:solarized_termcolors=256
-set background=light
-colo cthulhian
+set background=dark
+"colo cthulhian
+colo gruvbox
 let g:SuperTabDefaultCompletionType = "context"
 
 "clojure
@@ -128,3 +138,32 @@ function! ToggleErrors()
 endfunction
 
 nmap <silent> <leader>l :call ToggleErrors()<CR>
+
+"rainbow pars
+
+"markdown
+let g:vim_markdown_folding_disabled=1
+
+"remap jj to esc
+inoremap jj <Esc>
+
+"Ragtag
+let g:ragtag_global_maps = 1
+
+"map leader to space
+let mapleader = "\<Space>"
+"save file space w
+nnoremap <Leader>w :w<CR>
+"copy paste space y space p
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+"space space visual
+nmap <Leader><Leader> V
+
+"expand region v
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
